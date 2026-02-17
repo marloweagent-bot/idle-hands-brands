@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Engagement Report — Unplugs Hearing | February 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --border: #e5e5e5;
+            --text: #171717;
+            --text-muted: #737373;
+            --accent: #22c55e;
+            --accent-bg: rgba(34, 197, 94, 0.1);
+            --red: #ef4444;
+            --red-bg: rgba(239, 68, 68, 0.1);
+            --yellow: #f59e0b;
+            --yellow-bg: rgba(245, 158, 11, 0.1);
+            --blue: #3b82f6;
+            --blue-bg: rgba(59, 130, 246, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .report {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #171717 0%, #2d2d2d 100%);
+            color: white;
+            padding: 48px 40px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .report-date {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .stat-value.green { color: var(--accent); }
+        .stat-value.blue { color: var(--blue); }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .stat-change {
+            font-size: 0.75rem;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .stat-change.up {
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+
+        .stat-change.down {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        /* Competitive Table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .comp-table th {
+            background: var(--bg);
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .comp-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comp-table tr:hover {
+            background: var(--bg);
+        }
+
+        .comp-table .brand-cell {
+            font-weight: 600;
+        }
+
+        .comp-table .you {
+            background: var(--accent-bg);
+        }
+
+        .sentiment-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sentiment-fill {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--accent);
+        }
+
+        .sentiment-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Top Questions */
+        .question-list {
+            list-style: none;
+        }
+
+        .question-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        .question-rank {
+            background: var(--bg);
+            color: var(--text-muted);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .question-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .question-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .question-count {
+            margin-left: auto;
+            background: var(--blue-bg);
+            color: var(--blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Win Story */
+        .win-story {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .win-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .win-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .win-subreddit {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .win-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .win-response {
+            background: white;
+            border-left: 3px solid var(--accent);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .win-metrics {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .win-metric {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Insights */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .insight-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .insight-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Subreddit Heat */
+        .subreddit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .subreddit-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subreddit-name {
+            width: 140px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .subreddit-bar-container {
+            flex: 1;
+            background: var(--border);
+            height: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .subreddit-bar {
+            height: 100%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .subreddit-change {
+            width: 60px;
+            font-size: 0.8rem;
+            text-align: right;
+        }
+
+        .subreddit-change.up { color: var(--accent); }
+        .subreddit-change.down { color: var(--red); }
+
+        /* Keywords */
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .keyword-tag {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .keyword-tag.new {
+            background: var(--yellow-bg);
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .keyword-tag .count {
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        /* Footer */
+        .report-footer {
+            background: var(--bg);
+            padding: 24px 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        .report-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header, .content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report">
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">idle<span>hands</span></div>
+                <div class="report-date">February 2026</div>
+            </div>
+            <h1>Monthly Engagement Report</h1>
+            <p>Unplugs Hearing — Hearing Protection Category</p>
+        </div>
+
+        <div class="content">
+            <!-- Executive Summary Stats -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">📊</span> This Month at a Glance</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">47</div>
+                        <div class="stat-label">Threads Engaged</div>
+                        <div class="stat-change up">First month baseline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value green">+892</div>
+                        <div class="stat-label">Total Upvotes</div>
+                        <div class="stat-change up">Avg 19 per response</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value blue">23</div>
+                        <div class="stat-label">Direct Replies</div>
+                        <div class="stat-change up">49% reply rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Top Comments</div>
+                        <div class="stat-change up">Highest voted reply</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitive Landscape -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">⚔️</span> Competitive Landscape</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">How your brand compares to competitors mentioned in your category this month.</p>
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Mentions</th>
+                            <th>Sentiment</th>
+                            <th>Top Subreddits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="you">
+                            <td class="brand-cell">🎯 Unplugs</td>
+                            <td><strong>34</strong></td>
+                            <td>
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill" style="width: 86px;"></div>
+                                    <span class="sentiment-text">86% positive</span>
+                                </div>
+                            </td>
+                            <td>r/aves, r/tinnitus, r/festivals</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-cell">Loop</td>
+                            <td>67</td>
+                            <td>
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill" style="width: 71px; background: var(--yellow);"></div>
+                                    <span class="sentiment-text">71% positive</span>
+                                </div>
+                            </td>
+                            <td>r/misophonia, r/ADHD, r/autism</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-cell">Eargasm</td>
+                            <td>28</td>
+                            <td>
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill" style="width: 68px; background: var(--yellow);"></div>
+                                    <span class="sentiment-text">68% positive</span>
+                                </div>
+                            </td>
+                            <td>r/concerts, r/festivals</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-cell">Etymotic</td>
+                            <td>41</td>
+                            <td>
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill" style="width: 82px;"></div>
+                                    <span class="sentiment-text">82% positive</span>
+                                </div>
+                            </td>
+                            <td>r/audiophile, r/musicians</td>
+                        </tr>
+                        <tr>
+                            <td class="brand-cell">Alpine</td>
+                            <td>19</td>
+                            <td>
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill" style="width: 74px; background: var(--yellow);"></div>
+                                    <span class="sentiment-text">74% positive</span>
+                                </div>
+                            </td>
+                            <td>r/motorcycles, r/sleep</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 16px; padding: 16px; background: var(--accent-bg); border-radius: 8px; font-size: 0.9rem;">
+                    <strong>💡 Insight:</strong> Loop dominates volume but has mixed sentiment — common complaints about fit and "not enough reduction." Unplugs' higher sentiment suggests opportunity to capture dissatisfied Loop customers.
+                </div>
+            </div>
+
+            <!-- Top Questions -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">❓</span> Top Questions This Month</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">What your category is asking about — straight from the community.</p>
+                <ul class="question-list">
+                    <li class="question-item">
+                        <span class="question-rank">1</span>
+                        <div class="question-content">
+                            <h4>"Best earplugs that don't muffle the music?"</h4>
+                            <p>People want protection without sacrificing sound quality — high-fidelity is the key term.</p>
+                        </div>
+                        <span class="question-count">14 threads</span>
+                    </li>
+                    <li class="question-item">
+                        <span class="question-rank">2</span>
+                        <div class="question-content">
+                            <h4>"Is ringing after concerts normal?"</h4>
+                            <p>Early warning signs — people don't realize temporary ringing = damage. Education opportunity.</p>
+                        </div>
+                        <span class="question-count">11 threads</span>
+                    </li>
+                    <li class="question-item">
+                        <span class="question-rank">3</span>
+                        <div class="question-content">
+                            <h4>"Discreet earplugs that don't look dorky?"</h4>
+                            <p>Aesthetics matter, especially for younger users. Stigma is still a barrier.</p>
+                        </div>
+                        <span class="question-count">8 threads</span>
+                    </li>
+                    <li class="question-item">
+                        <span class="question-rank">4</span>
+                        <div class="question-content">
+                            <h4>"Loop vs Eargasm vs Etymotic — which one?"</h4>
+                            <p>Direct comparison threads — prime opportunity to position Unplugs as alternative.</p>
+                        </div>
+                        <span class="question-count">6 threads</span>
+                    </li>
+                    <li class="question-item">
+                        <span class="question-rank">5</span>
+                        <div class="question-content">
+                            <h4>"Earplugs for bass-heavy shows?"</h4>
+                            <p>EDM/dubstep fans need plugs that handle low frequencies well.</p>
+                        </div>
+                        <span class="question-count">5 threads</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Subreddit Heat Map -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">🔥</span> Subreddit Activity</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">Where the conversations are happening.</p>
+                <div class="subreddit-list">
+                    <div class="subreddit-row">
+                        <span class="subreddit-name">r/tinnitus</span>
+                        <div class="subreddit-bar-container">
+                            <div class="subreddit-bar" style="width: 100%;">156 threads</div>
+                        </div>
+                        <span class="subreddit-change up">+12%</span>
+                    </div>
+                    <div class="subreddit-row">
+                        <span class="subreddit-name">r/aves</span>
+                        <div class="subreddit-bar-container">
+                            <div class="subreddit-bar" style="width: 72%;">112 threads</div>
+                        </div>
+                        <span class="subreddit-change up">+8%</span>
+                    </div>
+                    <div class="subreddit-row">
+                        <span class="subreddit-name">r/festivals</span>
+                        <div class="subreddit-bar-container">
+                            <div class="subreddit-bar" style="width: 58%;">91 threads</div>
+                        </div>
+                        <span class="subreddit-change up">+23%</span>
+                    </div>
+                    <div class="subreddit-row">
+                        <span class="subreddit-name">r/ADHD</span>
+                        <div class="subreddit-bar-container">
+                            <div class="subreddit-bar" style="width: 45%;">71 threads</div>
+                        </div>
+                        <span class="subreddit-change up">+5%</span>
+                    </div>
+                    <div class="subreddit-row">
+                        <span class="subreddit-name">r/misophonia</span>
+                        <div class="subreddit-bar-container">
+                            <div class="subreddit-bar" style="width: 38%;">59 threads</div>
+                        </div>
+                        <span class="subreddit-change down">-3%</span>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 16px; background: var(--blue-bg); border-radius: 8px; font-size: 0.9rem;">
+                    <strong>📈 Trending:</strong> r/festivals activity up 23% — festival season prep is starting. Expect higher volume through May.
+                </div>
+            </div>
+
+            <!-- Win Story -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">🏆</span> Win of the Month</h2>
+                <div class="win-story">
+                    <div class="win-header">
+                        <span class="win-badge">TOP COMMENT</span>
+                        <span class="win-subreddit">r/aves • 3 days ago</span>
+                    </div>
+                    <div class="win-title">"Going to my first rave — what do I need to know?"</div>
+                    <div class="win-response">
+                        "One thing people always forget: protect your ears. I know it sounds like something your mom would say, but hear me out (pun intended). After my first few shows, my ears would ring for days. I didn't think much of it until a friend who's been in the scene for 10+ years told me he has permanent tinnitus now.
+                        <br><br>
+                        Get yourself some high-fidelity earplugs — they're not like the foam ones that muffle everything. They reduce the volume evenly so the music still sounds amazing, just safer. You can literally feel the bass without destroying your hearing. 
+                        <br><br>
+                        Most people at shows are wearing them now, it's not weird at all. Your future self will thank you."
+                    </div>
+                    <div class="win-metrics">
+                        <span class="win-metric">⬆️ 247 upvotes</span>
+                        <span class="win-metric">💬 34 replies</span>
+                        <span class="win-metric">🏅 2 awards</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emerging Keywords -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">🔑</span> Keyword Trends</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">What's being searched and discussed.</p>
+                <div class="keyword-tags">
+                    <span class="keyword-tag">tinnitus <span class="count">1,566</span></span>
+                    <span class="keyword-tag">hearing loss <span class="count">718</span></span>
+                    <span class="keyword-tag">ear plugs <span class="count">693</span></span>
+                    <span class="keyword-tag">sensory overload <span class="count">385</span></span>
+                    <span class="keyword-tag">misophonia <span class="count">321</span></span>
+                    <span class="keyword-tag">eargasm <span class="count">155</span></span>
+                    <span class="keyword-tag">hearing damage <span class="count">131</span></span>
+                    <span class="keyword-tag new">NEW: "inner click" <span class="count">12</span></span>
+                    <span class="keyword-tag new">NEW: "tap to protect" <span class="count">8</span></span>
+                </div>
+                <div style="margin-top: 16px; padding: 16px; background: var(--yellow-bg); border-radius: 8px; font-size: 0.9rem;">
+                    <strong>⭐ Brand Signal:</strong> "inner click" and "tap to protect" showing up organically — your messaging is starting to spread.
+                </div>
+            </div>
+
+            <!-- Strategic Insights -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">💡</span> Strategic Insights</h2>
+                <div class="insight-grid">
+                    <div class="insight-card">
+                        <h4>📦 Product Feedback</h4>
+                        <p><strong>Positive:</strong> "Doesn't muffle bass" mentioned 8x. Sound quality is landing.<br><br><strong>Opportunity:</strong> 3 people asked about carrying case options.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h4>📝 Content Gap</h4>
+                        <p>No good guide exists for "earplugs for DJs" — r/DJs and r/Beatmatch frequently ask. <strong>Recommend:</strong> Create DJ-specific content for safesound.guide.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h4>🎯 Positioning Opp</h4>
+                        <p>Loop complaints focus on comfort and fit. Opportunity to position Unplugs as "the comfortable alternative" in comparison threads.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h4>📅 Calendar Note</h4>
+                        <p>Coachella (Apr 11-20) and EDC (May 16-18) prep threads will spike in March. Recommend increased monitoring.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Month -->
+            <div class="section">
+                <h2 class="section-title"><span class="icon">📅</span> March Focus</h2>
+                <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+                    <p style="margin-bottom: 16px;"><strong>Recommended priorities for next month:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--text-muted);">
+                        <li style="margin-bottom: 8px;">Increase coverage in r/DJs and r/WeAreTheMusicMakers (professional segment)</li>
+                        <li style="margin-bottom: 8px;">Prepare for festival season surge — Coachella/EDC prep threads</li>
+                        <li style="margin-bottom: 8px;">Test messaging around "comfortable fit" to capture Loop defectors</li>
+                        <li style="margin-bottom: 8px;">Monitor emerging "inner click" mentions for organic brand lift</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-footer">
+            <p>Generated by <a href="index.html">Idle Hands</a> • Authentic engagement for community-first brands</p>
+            <p style="margin-top: 8px;">Questions? Reply to this email or reach out anytime.</p>
+        </div>
+    </div>
+</body>
+</html>
