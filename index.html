@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Hands — Own Your Niche</title>
+    <meta name="description" content="Authentic engagement in the conversations that matter. One brand per category. Claim your slot.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --surface: #141416;
+            --surface-2: #1c1c1f;
+            --border: #2a2a2d;
+            --text: #fafafa;
+            --text-muted: #8a8a8d;
+            --accent: #22c55e;
+            --accent-dim: rgba(34, 197, 94, 0.15);
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Nav */
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Problem */
+        .problem {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .problem-card .icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        /* How it works */
+        .how {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 16px;
+        }
+
+        .step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Model */
+        .model {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .model-box {
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .model-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+
+        .model-box p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .model-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .model-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+        }
+
+        .model-feature .check {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 48px;
+        }
+
+        .cat-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+
+        .cat-item:hover {
+            border-color: var(--accent);
+        }
+
+        .cat-item span {
+            font-size: 0.95rem;
+        }
+
+        .cat-status {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .cat-status.open {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .cat-status.claimed {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .cat-note {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 32px;
+            font-size: 0.9rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .price-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            position: relative;
+        }
+
+        .price-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .price-tier {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .price-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-features {
+            list-style: none;
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Anti-agency */
+        .anti {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .anti-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+
+        .anti-col h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .anti-col.bad h4 {
+            color: #ef4444;
+        }
+
+        .anti-col.good h4 {
+            color: var(--accent);
+        }
+
+        .anti-col ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .anti-col ul li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .anti-col ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .anti-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">idle<span>hands</span></a>
+            <a href="#claim" class="nav-cta">Claim Your Slot</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="badge">One Brand Per Niche</div>
+            <h1>Own the conversations<br>in <span class="highlight">your category</span></h1>
+            <p class="hero-sub">Authentic engagement in the Reddit threads and communities where your customers are already asking for recommendations. Exclusive slots. Info-rich answers only.</p>
+            <a href="#claim" class="hero-cta">Claim Your Slot →</a>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <p class="section-label">The Problem</p>
+            <h2 class="section-title">Conversations happen without you</h2>
+            <p class="section-desc">Every day, people ask Reddit which earplug to buy, which standing desk is worth it, which sleep supplement actually works. These are high-intent buyers. And you're not in the room.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">🔍</div>
+                    <h3>They're searching</h3>
+                    <p>"Best earplugs for concerts?" gets asked weekly across r/aves, r/festivals, r/audiophile. Real people, ready to buy.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">💬</div>
+                    <h3>They trust strangers</h3>
+                    <p>Reddit recommendations convert better than ads. A helpful answer from someone who "gets it" beats any landing page.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">⏰</div>
+                    <h3>You can't be everywhere</h3>
+                    <p>Monitoring dozens of subreddits, responding authentically, staying helpful — it's a full-time job you don't have time for.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how">
+        <div class="container">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title">Always-on authentic engagement</h2>
+            <p class="section-desc">We monitor the conversations in your category and show up with genuinely helpful answers — the kind that get upvoted, not downvoted.</p>
+            
+            <div class="how-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Keyword Mapping</h3>
+                    <p>We map your niche to specific keywords, subreddits, and conversation patterns.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>24/7 Monitoring</h3>
+                    <p>Our system watches for relevant threads — questions, recommendations, discussions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Authentic Response</h3>
+                    <p>Real humans craft info-rich answers that help first, mention products naturally second.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h3>Monthly Reporting</h3>
+                    <p>Full transparency on threads engaged, sentiment, and reach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="model">
+        <div class="container">
+            <p class="section-label">The Model</p>
+            <h2 class="section-title">You're not buying hours. You're buying a slot.</h2>
+            <p class="section-desc">One brand per niche. Exclusive ownership of your category's conversations. Once it's claimed, it's gone.</p>
+            
+            <div class="model-box">
+                <h3>Exclusive Category Ownership</h3>
+                <p>We only work with one brand per keyword universe. You own "concert earplugs" or "standing desks" or "premium dog food." No competitors. No conflicts.</p>
+                <div class="model-features">
+                    <div class="model-feature"><span class="check">✓</span> One brand per niche</div>
+                    <div class="model-feature"><span class="check">✓</span> No competitor overlap</div>
+                    <div class="model-feature"><span class="check">✓</span> Keyword exclusivity</div>
+                    <div class="model-feature"><span class="check">✓</span> Cancel anytime, lose slot</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <p class="section-label">Available Slots</p>
+            <h2 class="section-title">Claim your category</h2>
+            <p class="section-desc">150+ niches across health, productivity, audio, fitness, pets, and more. Here's a sample — ask about yours.</p>
+            
+            <div class="cat-grid">
+                <div class="cat-item"><span>Hearing Protection</span><span class="cat-status claimed">Claimed</span></div>
+                <div class="cat-item"><span>Standing Desks</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>IEMs / Earbuds</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Focus Supplements</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Sleep Aids</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Premium Dog Food</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Espresso Machines</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Home Gym Equipment</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Mechanical Keyboards</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Air Purifiers</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Baby Monitors</span><span class="cat-status open">Open</span></div>
+                <div class="cat-item"><span>Men's Skincare</span><span class="cat-status open">Open</span></div>
+            </div>
+            
+            <p class="cat-note">Don't see your niche? <a href="#claim" style="color: var(--accent);">Ask us</a> — we have 150+ categories mapped.</p>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-desc">Based on conversation volume in your niche. Higher activity = more opportunities = higher investment.</p>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <p class="price-tier">Standard</p>
+                    <p class="price-amount">$1,500</p>
+                    <p class="price-period">per month</p>
+                    <p class="price-desc">For emerging niches with growing conversation volume.</p>
+                    <ul class="price-features">
+                        <li>Up to 50 threads/month</li>
+                        <li>Keyword exclusivity</li>
+                        <li>Weekly monitoring</li>
+                        <li>Monthly report</li>
+                    </ul>
+                </div>
+                
+                <div class="price-card featured">
+                    <p class="price-tier">Growth</p>
+                    <p class="price-amount">$3,000</p>
+                    <p class="price-period">per month</p>
+                    <p class="price-desc">For active categories with consistent purchase intent.</p>
+                    <ul class="price-features">
+                        <li>Up to 100 threads/month</li>
+                        <li>Keyword exclusivity</li>
+                        <li>Daily monitoring</li>
+                        <li>Bi-weekly reports</li>
+                        <li>Subreddit expansion</li>
+                    </ul>
+                </div>
+                
+                <div class="price-card">
+                    <p class="price-tier">Premium</p>
+                    <p class="price-amount">$5,000+</p>
+                    <p class="price-period">per month</p>
+                    <p class="price-desc">For high-volume niches like tinnitus, headphones, fitness.</p>
+                    <ul class="price-features">
+                        <li>Unlimited threads</li>
+                        <li>Keyword exclusivity</li>
+                        <li>Real-time monitoring</li>
+                        <li>Weekly reports</li>
+                        <li>Multi-platform expansion</li>
+                        <li>Dedicated strategist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="anti">
+        <div class="container">
+            <p class="section-label">Our Philosophy</p>
+            <h2 class="section-title">Anti-agency</h2>
+            <p class="section-desc">We're not an agency. We don't do spam, astroturfing, or fake reviews. We help genuine products show up authentically in genuine conversations.</p>
+            
+            <div class="anti-grid">
+                <div class="anti-col bad">
+                    <h4>❌ Not This</h4>
+                    <ul>
+                        <li>Mass posting across subreddits</li>
+                        <li>Fake accounts and personas</li>
+                        <li>Product-first responses</li>
+                        <li>Ignoring subreddit rules</li>
+                        <li>Multiple brands per category</li>
+                        <li>Vanity metrics</li>
+                    </ul>
+                </div>
+                <div class="anti-col good">
+                    <h4>✓ This</h4>
+                    <ul>
+                        <li>Targeted, relevant engagement</li>
+                        <li>Real humans, real accounts</li>
+                        <li>Info-first, product-second</li>
+                        <li>Community-native behavior</li>
+                        <li>One brand per niche</li>
+                        <li>Actual conversations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="claim">
+        <div class="container">
+            <h2>Claim your slot before someone else does</h2>
+            <p>Once a niche is taken, it's gone. Check if your category is available.</p>
+            <a href="mailto:hello@idlehands.co?subject=Slot%20Inquiry&body=Category%20I'm%20interested%20in:%0A%0ABrand%20name:%0A%0AWebsite:" class="hero-cta">Check Availability →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Idle Hands. Authentic engagement for community-first brands.</p>
+        </div>
+    </footer>
+</body>
+</html>
